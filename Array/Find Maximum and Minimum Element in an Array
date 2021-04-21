@@ -1,0 +1,63 @@
+#include <iostream>
+using namespace std;
+struct Pair{
+    int min;
+    int max;
+};
+
+struct Pair getMinMax(int a[],int n)
+{
+    struct Pair minmax;
+    if(n==1)
+    {
+        minmax.min=a[0];
+        minmax.max=a[0];
+        return minmax;
+        
+    }
+     
+    else
+    {
+        if(a[0]>a[1])
+        {
+            minmax.max=a[0];
+            minmax.min=a[1];
+        }
+        else
+        {
+            minmax.max=a[1];
+            minmax.min=a[0];
+        }
+        
+        for(int i=2;i<n;i++)
+        {
+            if(a[i]>minmax.max)
+            {
+                minmax.max=a[i];
+            }
+            else if(a[i]<minmax.min)
+            {
+                minmax.min=a[i];
+            }
+        }
+        return minmax;
+    }
+    
+    
+}
+
+int main()
+{
+    int n;
+    int *p=new int[n];
+    
+    cin>>n;
+    for(int i=0;i<n;i++)
+    {
+        cin>>p[i];
+    }
+    struct Pair ans=getMinMax(p,n);
+    cout<<"Maximum Element in Array is "<<ans.max;
+    cout<<"\n\n";
+    cout<<"Minimum Element in Array is "<<ans.min;
+}
